@@ -12,9 +12,17 @@ const Formulario = () => {
     })
 
     // Funcion que se ejecuta cada vez que el usuario escribe en un input
-    const actualizarState = () => {
-        console.log('escribiendo....')
+    const actualizarState = e => {
+        // console.log(e.target.name)
+        actualizarCita({
+            // para crear la copia de citas y que no re-escriba los campos
+            ...cita,
+            [e.target.name] : e.target.value
+        })
     }
+
+    // Extraer los valores de cita
+    const {mascota, propietario, fecha, hora, sintomas} = cita;
 
 
     return (
@@ -29,6 +37,7 @@ const Formulario = () => {
                 className="u-full-width"
                 placeholder="Nombre de Mascota"
                 onChange={actualizarState}
+                value={mascota}
                 />
 
                 <label htmlFor="">Nombre Dueño</label>
@@ -38,6 +47,7 @@ const Formulario = () => {
                     className="u-full-width"
                     placeholder="Nombre Dueño de la Mascota"
                     onChange={actualizarState}
+                    value={propietario}
                 />
 
                 <label htmlFor="">Fecha</label>
@@ -46,6 +56,7 @@ const Formulario = () => {
                     name="fecha"
                     className="u-full-width"
                     onChange={actualizarState}
+                    value={fecha}
                 />
 
                 <label htmlFor="">Hora</label>
@@ -54,6 +65,7 @@ const Formulario = () => {
                     name="hora"
                     className="u-full-width"
                     onChange={actualizarState}
+                    value={hora}
                 />
 
                 <label htmlFor="">Sintomas</label>
@@ -61,6 +73,7 @@ const Formulario = () => {
                     className='u-full-width'
                     name="sintomas" 
                     onChange={actualizarState}
+                    value={sintomas}
                 ></textarea>
 
                 <button
